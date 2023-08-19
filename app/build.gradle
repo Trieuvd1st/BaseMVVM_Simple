@@ -4,6 +4,7 @@ plugins {
     id 'com.google.dagger.hilt.android'
     id 'kotlin-kapt'
     id("kotlin-parcelize")
+//    id 'com.google.gms.google-services'
 }
 
 //def loadProperties(filename) {
@@ -20,11 +21,11 @@ plugins {
 //def local = loadProperties("local.properties")
 
 android {
-    namespace 'com.joysoftgo.base_mvvm'
+    namespace 'com.android.base_mvvm'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.joysoftgo.base_mvvm"
+        applicationId "com.android.base_mvvm"
         minSdk 23
         targetSdk 33
         versionCode 1
@@ -86,19 +87,19 @@ android {
         viewBinding true
     }
 
-//    applicationVariants.all { variant ->
-//        variant.outputs.all {
-//            def flavor = variant.flavorName
-//            def buildType = variant.buildType.name.capitalize()
-//            def versionName = variant.versionName
-//            def versionCode = variant.versionCode
-//
-//            def date = new Date()
-//            def formattedDate = date.format('yyMMdd_HHmm')
-//            def appName = "base_mvvm${flavor}${buildType}_v${versionName}(${versionCode})_${formattedDate}.apk"
-//            outputFileName = appName
-//        }
-//    }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def flavor = variant.flavorName
+            def buildType = variant.buildType.name.capitalize()
+            def versionName = variant.versionName
+            def versionCode = variant.versionCode
+
+            def date = new Date()
+            def formattedDate = date.format('yyMMdd_HHmm')
+            def appName = "ai_music${flavor}${buildType}_v${versionName}(${versionCode})_${formattedDate}.apk"
+            outputFileName = appName
+        }
+    }
 }
 
 dependencies {
@@ -111,13 +112,17 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 
+    //ktx
+    implementation "androidx.fragment:fragment-ktx:1.6.1"
+    implementation "androidx.activity:activity-ktx:1.7.2"
+
     //Jetpack Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
-    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+//    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+//    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
 
     //DI Support
-    implementation 'com.google.dagger:hilt-android:2.45'
-    kapt 'com.google.dagger:hilt-compiler:2.45'
+    implementation 'com.google.dagger:hilt-android:2.46.1'
+    kapt 'com.google.dagger:hilt-compiler:2.46.1'
 
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
@@ -133,23 +138,23 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7'
 
     //Glide
-    implementation 'com.github.bumptech.glide:glide:4.14.2'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
-
-    //datastore
-    implementation 'androidx.datastore:datastore-preferences:1.0.0'
-    implementation 'androidx.datastore:datastore-core:1.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     //room
-    implementation 'androidx.room:room-runtime:2.5.1'
-    annotationProcessor 'androidx.room:room-compiler:2.5.1'
-    kapt 'androidx.room:room-compiler:2.5.1'
-    implementation 'androidx.room:room-ktx:2.5.1'
-    implementation 'androidx.room:room-common:2.5.1'
+    implementation 'androidx.room:room-runtime:2.5.2'
+    annotationProcessor 'androidx.room:room-compiler:2.5.2'
+    kapt 'androidx.room:room-compiler:2.5.2'
+    implementation 'androidx.room:room-ktx:2.5.2'
+    implementation 'androidx.room:room-common:2.5.2'
 
     //multiple screen
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     //implementation 'com.intuit.ssp:ssp-android:1.1.0'
+
+    //firebase
+//    implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
+//    implementation("com.google.firebase:firebase-analytics-ktx")
 }
 
 kapt {

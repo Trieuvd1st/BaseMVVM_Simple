@@ -2,7 +2,6 @@
 
 ## Technology in this project
 - Kotlin
-- Clean architecture (package)
 - MVVM
 - Hilt
 - Coroutine
@@ -10,7 +9,7 @@
 - LiveData
 - RxJava, RxAndroid
 - Room
-- DataStore
+- SharedPreferences (file AppPreferences)
 - Glide
 - Retrofit
 - sdp, ssp (multiple screen)

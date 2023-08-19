@@ -20,6 +20,10 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
 
     private val viewModel by viewModels<DashboardViewModel>()
 
+    override fun handleOnBackPressed() {
+        requireActivity().moveTaskToBack(true)
+    }
+
 
     override fun initView(savedInstanceState: Bundle?) {
     }

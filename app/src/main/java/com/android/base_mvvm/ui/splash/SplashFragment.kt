@@ -9,6 +9,7 @@ import com.android.base_mvvm.databinding.FragmentSplashBinding
 import com.android.base_mvvm.ui.base.BaseFragment
 import com.android.base_mvvm.ui.dashboard.DashboardFragment
 import com.android.base_mvvm.utils.ext.handleReplace
+import com.android.base_mvvm.utils.ext.popBackStack
 import com.android.base_mvvm.utils.ext.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +21,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
 
     override fun initView(savedInstanceState: Bundle?) {
         Handler(Looper.getMainLooper()).postDelayed({
+            requireActivity().popBackStack()
             requireActivity().supportFragmentManager.handleReplace(containerId = R.id.mainContainer, fragment = DashboardFragment())
         }, 1000)
     }

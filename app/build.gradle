@@ -7,18 +7,18 @@ plugins {
 //    id 'com.google.gms.google-services'
 }
 
-//def loadProperties(filename) {
-//    def keystorePropertiesFile = rootProject.file(filename)
-//    def keystoreProperties = new Properties()
-//    if (keystorePropertiesFile != null && keystorePropertiesFile.exists()) {
-//        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-//        return keystoreProperties
-//    }
-//    return null
-//}
-//
-//def keystore = loadProperties("keystore.properties")
-//def local = loadProperties("local.properties")
+def loadProperties(filename) {
+    def keystorePropertiesFile = rootProject.file(filename)
+    def keystoreProperties = new Properties()
+    if (keystorePropertiesFile != null && keystorePropertiesFile.exists()) {
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+        return keystoreProperties
+    }
+    return null
+}
+
+def keystore = loadProperties("keystore.properties")
+def local = loadProperties("local.properties")
 
 android {
     namespace 'com.android.base_mvvm'
@@ -35,46 +35,41 @@ android {
         //buildConfigField "String", "BASE_URL", properties['base_url']
     }
 
-//    signingConfigs {
-//        release {
-//            storeFile file(keystore.storeFile)
-//            storePassword keystore.storePassword
-//            keyAlias keystore.keyAlias
-//            keyPassword keystore.keyPassword
-//        }
-//    }
+    signingConfigs {
+        release {
+            storeFile file(keystore.storeFile)
+            storePassword keystore.storePassword
+            keyAlias keystore.keyAlias
+            keyPassword keystore.keyPassword
+        }
+    }
 
     buildTypes {
         debug {
 //            manifestPlaceholders = [crashlyticsCollectionEnabled: "false"]
 //            ext.enableCrashlytics = false
+            signingConfig signingConfigs.release
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
         }
     }
 
-//    flavorDimensions "notSet"
-//    productFlavors {
-//        Dev {
-//            dimension "notSet"
-//            signingConfig signingConfigs.release
-//        }
-//
-//        Testing {
-//            dimension "notSet"
-//            signingConfig signingConfigs.release
-//        }
-//
-//
-//        Prod {
-//            dimension "notSet"
-//            signingConfig signingConfigs.release
-//        }
-//    }
+    flavorDimensions "notSet"
+    productFlavors {
+        Dev {
+            dimension "notSet"
+            //signingConfig signingConfigs.release
+        }
+
+        Prod {
+            dimension "notSet"
+            //signingConfig signingConfigs.release
+        }
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -96,7 +91,7 @@ android {
 
             def date = new Date()
             def formattedDate = date.format('yyMMdd_HHmm')
-            def appName = "ai_music${flavor}${buildType}_v${versionName}(${versionCode})_${formattedDate}.apk"
+            def appName = "baseMVVM${flavor}${buildType}_v${versionName}(${versionCode})_${formattedDate}.apk"
             outputFileName = appName
         }
     }

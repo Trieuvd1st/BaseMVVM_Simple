@@ -8,7 +8,7 @@ class PhotoRepository @Inject constructor(private val photoDao: PhotoDao) {
 
     fun getAll() = photoDao.getAll().flowOn(Dispatchers.IO)
 
-    suspend fun findById(id: Int) = photoDao.findById(id)
+//    suspend fun findById(id: Int) = photoDao.findById(id)
 
     suspend fun insertAll(photo: PhotoEntity) = photoDao.insertAll(photo)
 
